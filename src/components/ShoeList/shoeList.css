@@ -1,0 +1,6 @@
+.card {
+  width: 100vw;
+  height: screen remaining height;
+  display: grid;
+  grid-template-columns: repeat (4, 1fr);
+}

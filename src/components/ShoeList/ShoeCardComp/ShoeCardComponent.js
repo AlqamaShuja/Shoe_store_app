@@ -6,54 +6,67 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 320,
-    marginTop: 15,
-    marginLeft: 20,
+    maxWidth: 300,
+    width: 290,
+    height: 320,
+    // marginTop: 1,
+    // marginLeft: 20,
   },
   media: {
     height: 20,
     paddingTop: "56.25%", // 16:9
   },
+  fixedHeight: {
+    height: 40,
+  },
+  buttonFixed: {
+    position: "relative",
+    marginLeft: 80,
+    minWidth: 105,
+    // right: 4,
+  },
 }));
 
-export default function ShoeCardComponent() {
+export default function ShoeCardComponent(props) {
   const classes = useStyles();
   const defaultProps = {
     bgcolor: "background.paper",
     m: 1,
     border: 2,
-    maxWidth: 320,
+    maxWidth: 310,
   };
+  const { name, imgURL, price } = props.shoe;
 
   return (
-    <Box borderColor="#3949ab" {...defaultProps}>
-      <Card className={classes.root}>
-        <CardMedia
-          className={classes.media}
-          image="http://i5.walmartimages.com/dfw/dce07b8c-86b6/k2-_398f93d0-6861-40c6-892d-3c630c5e0db5.v1.jpg"
-          title="Paella dish"
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Toms Mens Classic Burlap Slip On Casual Loafer Shoe, Black, Us 9
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-    </Box>
+    <div>
+      <Box borderColor="#3949ab" {...defaultProps}>
+        <Card className={classes.root}>
+          <CardMedia className={classes.media} image={imgURL} title={name} />
+          <CardContent className={classes.fixedHeight}>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {name}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <Typography> Price: ${price.toFixed(2)} </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.buttonFixed}
+            >
+              {" "}
+              Add Cart{" "}
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
+    </div>
   );
 }
