@@ -4,12 +4,10 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   fixedHeight: {
-    height: 40,
+    height: 30,
+    textOverflow: "hidden",
   },
   buttonFixed: {
     position: "relative",
@@ -43,23 +42,29 @@ export default function ShoeCardComponent(props) {
     maxWidth: 310,
   };
   const { name, imgURL, price } = props.shoe;
+  const navigate = useNavigate();
 
   return (
     <div>
       <Box borderColor="#3949ab" {...defaultProps}>
         <Card className={classes.root}>
-          <CardMedia className={classes.media} image={imgURL} title={name} />
-          <CardContent className={classes.fixedHeight}>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {name}
-            </Typography>
-          </CardContent>
+          <div onClick={() => navigate(`/${props.shoeId}`)}>
+            <CardMedia className={classes.media} image={imgURL} title={name} />
+            <CardContent className={classes.fixedHeight}>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {name}
+              </Typography>
+            </CardContent>
+          </div>
           <CardActions disableSpacing>
             <Typography> Price: ${price.toFixed(2)} </Typography>
             <Button
               variant="contained"
               color="primary"
               className={classes.buttonFixed}
+              onClick={() => {
+                props.addOnCart(props.shoeId);
+              }}
             >
               {" "}
               Add Cart{" "}

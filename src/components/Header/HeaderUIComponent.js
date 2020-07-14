@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
   },
   home: {
     position: "absolute",
-    right: 258,
+    right: 213,
   },
   contact: {
     position: "absolute",
-    right: 130,
+    right: 133,
   },
   about: {
     position: "absolute",
@@ -35,7 +35,7 @@ export default function DenseAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar variant="dense">
           <IconButton
             edge="start"
@@ -64,11 +64,11 @@ export default function DenseAppBar() {
             variant="contained"
             className={classes.contact}
             onClick={() => {
-              navigate("/contact-us");
+              navigate("/cart");
             }}
           >
             {" "}
-            Contact Us{" "}
+            Cart{" "}
           </Button>
 
           <Button
