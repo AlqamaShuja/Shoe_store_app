@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ShoeList from "./ShoeList/ShoeList";
 import NotFound from "./URLNotFound/NotFound";
-import Carts from "./Cart/Carts";
+import Cart from "./Cart/Cart";
 import Header from "./Header/Header";
 import AboutUs from "./AboutUs/AboutUs";
 import ShoeDetails from "./ShoeDetails/ShoeDetails";
@@ -35,7 +35,7 @@ export default function ShowStore() {
           <Route path="/:shoeId" element={<ShoeDetails />}></Route>
           <Route
             path="cart"
-            element={<Carts list={isList} removeFromCart={removeFromCart} />}
+            element={<Cart list={isList} removeFromCart={removeFromCart} />}
           ></Route>
           <Route path="about-us" element={<AboutUs />}></Route>
           <Route path="*" element={<NotFound />}></Route>
